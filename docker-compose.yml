@@ -1,18 +1,17 @@
-version: '3'
+version: '3.8'
+
 services:
-  express-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  king-21:
+    image: david-21
+    build: .
     ports:
-      - 3000:3000
+      - '7004:3000'
+    environment:
+      - MONGODB_URI:'mongodb://mongo:27017/Afrid'
     depends_on:
-     - mongo
- 
-  mongo:
-    image: mongo
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
     ports:
-      - 27017:27017
-    volumes:
-      - ./data:/data/Afrid
-      
+      - '27017:27017'
